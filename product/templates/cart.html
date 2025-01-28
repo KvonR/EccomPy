@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Your Cart</h1>
+        <ul>
+            {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - Quantity: {{ item.quantity }} - ${{ item.product.price }}
+                <form action="{% url 'remove_from_cart' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        <p>Total: ${{ total_amount }}</p>
+        <a href="/products/">Continue Shopping</a>
+        <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+    {% else %}
+        <h1>Your Cart</h1>
+        <p>You need to <a href="{% url 'login' %}">log in</a> to view your cart.</p>
+        <a href="/products/">Continue Shopping</a>
+    {% endif %}
+</body>
+</html>

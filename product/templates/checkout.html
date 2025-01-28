@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <h1>Checkout</h1>
+        <ul>
+            {% for item in cart_items %}
+            <li>
+                {{ item.product.name }} - Quantity: {{ item.quantity }} - ${{ item.product.price }}
+            </li>
+            {% endfor %}
+        </ul>
+        <p>Total: ${{ total_amount }}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    {% else %}
+        <h1>Checkout</h1>
+        <p>You need to <a href="{% url 'login' %}">log in</a> to proceed to checkout.</p>
+        <a href="/products/">Continue Shopping</a>
+    {% endif %}
+</body>
+</html>
