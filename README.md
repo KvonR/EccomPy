@@ -1,4 +1,4 @@
-Main features working 
+DJANGO PYTHON ECOMMERCE STORE - ECOMMERCEPY                Main features working 
 Will be complete by 30/01/2025
 Upcoming features:
 Style Remaining Pages
