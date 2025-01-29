@@ -23,7 +23,7 @@ LOGIN_URL = '/accounts/login/'  # Default login URL
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d$tx150su#+fib*c7x&cp4ra7*nrt19w2tcg@r2#ur=^_49xth'
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,7 +35,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STRIPE_PUBLIC_KEY = "pk_test_51QmExtCRCFm29vWVprZFhqiYRbydEzwYwXQ2OhMnPfeXWInqTVEV0jhuxVy7sHoNxv37mzZVR5Z2pIuBVFeRq1eV00XClkNg2Z"
-STRIPE_SECRET_KEY = "sk_test_51QmExtCRCFm29vWVZnTaytGQcuA7fI9YqEYAkQBQnQ4VoUkqrlIV4ztFQNBu5e3KcsEIE3bFLAhrGOJDDISvlNL000AnyOeq3y"
+STRIPE_SECRET_KEY = ""
 
 # Application definition
 
