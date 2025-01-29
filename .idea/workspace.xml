@@ -4,21 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/EcomPy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/cancel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/cart.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/checkout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/order_history.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/product_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/registration/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/registration/logout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/success.html" afterDir="false" />
+    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="Working main features now time for polish">
+      <change afterPath="$PROJECT_DIR$/media/carousel/banner1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/carousel/banner2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/carousel/banner3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/cancel.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/cancel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/order_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/order_history.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/product_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/product_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/registration/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/registration/logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/success.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "KvonR"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/KvonR/EccomPy.git",
+    "accountId": "728cc227-0f09-40ce-bf93-14ceeab3269a"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -52,14 +65,20 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Akh/PythonProjects/EcomPy/media/carousel",
     "settings.editor.selected.configurable": "promo.django"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Akh\PythonProjects\EcomPy\media\carousel" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Akh\PythonProjects\EcomPy" />
+      <recent name="C:\Users\Akh\PythonProjects\EcomPy\ecommerce_store\media" />
+      <recent name="C:\Users\Akh\PythonProjects\EcomPy\ecommerce_store" />
       <recent name="C:\Users\Akh\PythonProjects\EcomPy\product\templates\registration" />
       <recent name="C:\Users\Akh\PythonProjects\EcomPy\product\templates" />
-      <recent name="C:\Users\Akh\PythonProjects\EcomPy\product" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -78,7 +97,31 @@
       <option name="presentableId" value="Default" />
       <updated>1738027162101</updated>
     </task>
+    <task id="LOCAL-00001" summary="Working main features now time for polish">
+      <option name="closed" value="true" />
+      <created>1738108121367</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738108121367</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Working main features now time for polish" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working main features now time for polish" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

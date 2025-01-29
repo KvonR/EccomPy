@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Cancelled</title>
-</head>
-<body>
-    <h1>Your payment was cancelled.</h1>
-    <a href="/products/">Return to Products</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Payment Canceled{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-danger">Payment Canceled</h1>
+<p>Your payment was not processed. If this was unintentional, you can try again.</p>
+<a href="{% url 'view_cart' %}" class="btn btn-warning">Return to Cart</a>
+<a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+{% endblock %}

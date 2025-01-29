@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Payment Success</title>
-</head>
-<body>
-    <h1>Thank you for your purchase!</h1>
-    <a href="/products/">Continue Shopping</a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Payment Success{% endblock %}
+
+{% block content %}
+<h1 class="mb-4 text-success">Thank You for Your Purchase!</h1>
+<p>Your payment was successfully processed. A confirmation email has been sent to you.</p>
+<a href="{% url 'product_list' %}" class="btn btn-primary">Continue Shopping</a>
+<a href="{% url 'order_history' %}" class="btn btn-secondary">View Your Orders</a>
+{% endblock %}
