@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="Completed:Products,StripePay,Querying,Bootstrap Styling">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="Completed:Products,StripePay,Querying,Bootstrap Styling, Email Comfirmation">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce_store/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce_store/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,8 +101,19 @@
       <option name="project" value="LOCAL" />
       <updated>1738115948616</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Completed:Products,StripePay,Querying,Bootstrap Styling, Email Comfirmation">
+      <option name="closed" value="true" />
+      <created>1738684438225</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738684438225</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -117,6 +130,7 @@
     <MESSAGE value="Working main features now time for polish" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;ecommerce_store/settings.py" />
     <MESSAGE value="Completed:Products,StripePay,Querying,Bootstrap Styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed:Products,StripePay,Querying,Bootstrap Styling" />
+    <MESSAGE value="Completed:Products,StripePay,Querying,Bootstrap Styling, Email Comfirmation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed:Products,StripePay,Querying,Bootstrap Styling, Email Comfirmation" />
   </component>
 </project>
