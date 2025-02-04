@@ -1,5 +1,5 @@
 DJANGO PYTHON ECOMMERCE STORE - ECOMMERCEPY                Main features working 
-Will be complete by 30/01/2025
+Will be complete by 14/02/2025
 Upcoming features:
 Style Remaining Pages,
 Wishlist,
