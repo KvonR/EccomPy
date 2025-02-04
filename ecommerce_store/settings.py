@@ -34,8 +34,20 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STRIPE_PUBLIC_KEY = "pk_test_51QmExtCRCFm29vWVprZFhqiYRbydEzwYwXQ2OhMnPfeXWInqTVEV0jhuxVy7sHoNxv37mzZVR5Z2pIuBVFeRq1eV00XClkNg2Z"
-STRIPE_SECRET_KEY = "sk_test_51QmExtCRCFm29vWVZnTaytGQcuA7fI9YqEYAkQBQnQ4VoUkqrlIV4ztFQNBu5e3KcsEIE3bFLAhrGOJDDISvlNL000AnyOeq3y"
+from dotenv import load_dotenv
+load_dotenv()
+# Stripe Keys
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+
+
+# Email Configuration (Using Gmail SMTP)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kevinrahimi75@gmail.com'
+EMAIL_HOST_PASSWORD = 'idod jhkc voke suwv'
 
 # Application definition
 

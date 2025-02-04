@@ -4,22 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="Working main features now time for polish">
-      <change afterPath="$PROJECT_DIR$/media/carousel/banner1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/carousel/banner2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/carousel/banner3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product/templates/home.html" afterDir="false" />
+    <list default="true" id="c1d7af62-4991-4887-a73c-572e95e9ebac" name="Changes" comment="Completed:Products,StripePay,Querying,Bootstrap Styling">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product/templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sendg.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/templates/cancel.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/cancel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecommerce_store/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce_store/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/templates/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/cart.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/checkout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/templates/order_history.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/order_history.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/templates/product_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/product_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/register.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/templates/registration/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/registration/logout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/templates/success.html" beforeDir="false" afterPath="$PROJECT_DIR$/product/templates/success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/product/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,18 +35,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KvonR"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KvonR&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KvonR/EccomPy.git",
-    "accountId": "728cc227-0f09-40ce-bf93-14ceeab3269a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KvonR/EccomPy.git&quot;,
+    &quot;accountId&quot;: &quot;728cc227-0f09-40ce-bf93-14ceeab3269a&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -58,17 +56,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Akh/PythonProjects/EcomPy/media/carousel",
-    "settings.editor.selected.configurable": "promo.django"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Akh/PythonProjects/EcomPy/media/carousel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;promo.django&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Akh\PythonProjects\EcomPy\media\carousel" />
@@ -105,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738108121367</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Completed:Products,StripePay,Querying,Bootstrap Styling">
+      <option name="closed" value="true" />
+      <created>1738115948616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738115948616</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,17 +127,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Working main features now time for polish" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working main features now time for polish" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/product/urls.py</url>
-          <line>12</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Completed:Products,StripePay,Querying,Bootstrap Styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed:Products,StripePay,Querying,Bootstrap Styling" />
   </component>
 </project>

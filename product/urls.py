@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import product_list, view_cart, add_to_cart, remove_from_cart, checkout, payment_success, payment_cancel, order_history, register
+from .views import product_list, view_cart, add_to_cart, remove_from_cart, checkout, payment_success, payment_cancel, order_history, register, create_checkout_session
 
 urlpatterns = [
     path('', product_list, name='product_list'),
@@ -10,5 +10,6 @@ urlpatterns = [
     path('success/', payment_success, name='payment_success'),  # Add success URL
     path('cancel/', payment_cancel, name='payment_cancel'),  # Add cancel URL
     path('orders/', order_history, name='order_history'),
-    path('register/', register, name='register')
+    path('register/', register, name='register'),
+    path('create-checkout-session/', create_checkout_session, name='create_checkout_session'),
 ]

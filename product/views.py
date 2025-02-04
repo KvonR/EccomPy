@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, CartItem
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
+
 # Set Stripe's secret key
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -86,9 +88,31 @@ def checkout(request):
 
 from .models import Order, OrderItem, CartItem
 
+
 @login_required
 def payment_success(request):
-    # Get the cart items for the logged-in user
+    session_id = request.GET.get('session_id')
+
+    # Debugging: Print session ID
+    print(f"Received session ID: {session_id}")
+
+    if not session_id:
+        return render(request, 'error.html', {'message': 'Session ID not found'})
+
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    try:
+        session = stripe.checkout.Session.retrieve(session_id)
+        print(f"Stripe session retrieved: {session}")  # Debugging log
+    except stripe.error.InvalidRequestError as e:
+        print(f"Stripe session retrieval failed: {e}")
+        return render(request, 'error.html', {'message': 'Invalid Stripe session'})
+
+    # ✅ Fix: Get email from customer_details instead of customer_email
+    customer_email = session.customer_details.email if session.customer_details else None
+    if not customer_email:
+        return render(request, 'error.html', {'message': 'Customer email not found in Stripe session'})
+
+    # Get cart items and calculate total amount
     cart_items = CartItem.objects.filter(user=request.user)
     total_amount = sum(item.product.price * item.quantity for item in cart_items)
 
@@ -98,18 +122,81 @@ def payment_success(request):
         total_amount=total_amount
     )
 
-    # Save each cart item as an order item
+    # Add order items
+    order_items_details = ""
     for item in cart_items:
         OrderItem.objects.create(
             order=order,
             product=item.product,
             quantity=item.quantity
         )
+        order_items_details += f"{item.quantity} x {item.product.name} - ${item.product.price * item.quantity}\n"
 
     # Clear the user's cart
     cart_items.delete()
 
+    # Debugging logs
+    print(f"✅ Sending email to: {customer_email}")
+    print(f"🛒 Order details:\n{order_items_details}")
+
+    # Send Order Confirmation Email
+    subject = "Your Order Confirmation - E-CommercePY"
+    message = f"""
+    Thank you for your purchase!
+
+    Your Order Details:
+    {order_items_details}
+
+    Total Amount: ${total_amount}
+
+    We will notify you once your order is shipped.
+    """
+
+    try:
+        send_mail(
+            subject,
+            message,
+            settings.EMAIL_HOST_USER,  # Ensure this is configured correctly
+            [customer_email],  # Use the email from Stripe customer_details
+            fail_silently=False,
+        )
+        print("✅ Email sent successfully!")
+    except Exception as e:
+        print(f"❌ Email sending failed: {e}")
+
     return render(request, 'success.html', {'order': order})
+
+
+
+def create_checkout_session(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    # Calculate the total amount based on cart items
+    cart_items = CartItem.objects.filter(user=request.user)
+    total_price = sum(item.product.price * item.quantity for item in cart_items) * 100  # Convert to cents
+
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        customer_creation='always',  # Ensures a customer is always created
+        billing_address_collection='required',  # Forces Stripe to collect email
+        line_items=[
+            {
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': item.product.name,  # Use the actual product name
+                    },
+                    'unit_amount': int(item.product.price * 100),  # Convert price to cents
+                },
+                'quantity': item.quantity,  # Ensure quantity is correctly set
+            } for item in cart_items  # Loop through all cart items
+        ],
+        mode='payment',
+        success_url=request.build_absolute_uri('/products/success/') + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri('/products/cancel/'),
+    )
+
+    return redirect(session.url)
 
 def payment_cancel(request):
     return render(request, 'cancel.html')
@@ -129,3 +216,20 @@ def register(request):
         form = UserCreationForm()  # Empty form for GET requests
 
     return render(request, 'register.html', {'form': form})
+
+
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+def send_order_confirmation(email, order_details):
+    subject = "Your Order Confirmation - E-CommercePY"
+    message = f"Thank you for your order!\n\nOrder Details:\n{order_details}\n\nWe will notify you once your order is shipped."
+
+    send_mail(
+        subject,
+        message,
+        settings.EMAIL_HOST_USER,
+        [email],
+        fail_silently=False,
+    )
