@@ -36,20 +36,82 @@ def product_list(request):
 @login_required
 def view_cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
-    total_amount = sum(item.product.price * item.quantity for item in cart_items)
-    return render(request, 'cart.html', {'cart_items': cart_items, 'total_amount': total_amount})
+
+    # Calculate total price for each item and store it in a list of dictionaries
+    cart_data = []
+    total_amount = 0
+
+    for item in cart_items:
+        item_total = item.product.price * item.quantity
+        total_amount += item_total
+        cart_data.append({
+            "id": item.id,
+            "product": item.product,
+            "quantity": item.quantity,
+            "item_total": item_total  # This stores the total price per item
+        })
+
+    return render(request, "cart.html", {"cart_items": cart_data, "total_amount": total_amount})
 
 
+from django.http import JsonResponse
+
+@login_required
+def update_cart(request):
+    if request.method == "POST":
+        cart_item_id = request.POST.get("cart_item_id")
+        new_quantity = int(request.POST.get("quantity", 1))
+
+        try:
+            cart_item = CartItem.objects.get(id=cart_item_id, user=request.user)
+
+            if new_quantity > 0:
+                cart_item.quantity = new_quantity
+                cart_item.save()
+            else:
+                cart_item.delete()  # Remove item if quantity is set to 0
+
+            # Ensure total_amount is always a valid number
+            total_amount = sum(item.product.price * item.quantity for item in CartItem.objects.filter(user=request.user))
+            total_amount = float(total_amount)  # Convert to float just in case
+
+            # Ensure item_total_price is also a valid number
+            item_total_price = float(cart_item.product.price * cart_item.quantity) if new_quantity > 0 else 0
+
+            print(f"✅ Cart Updated: Item {cart_item_id} -> New Quantity: {new_quantity}, Total: {total_amount}")
+
+            return JsonResponse({
+                "success": True,
+                "total_amount": total_amount,
+                "item_total_price": item_total_price,
+                "cart_item_id": cart_item.id
+            })
+
+        except CartItem.DoesNotExist:
+            print(f"❌ Error: Cart item {cart_item_id} not found.")
+            return JsonResponse({"success": False, "error": "Item not found"}, status=400)
+
+    return JsonResponse({"success": False, "error": "Invalid request"}, status=400)
 
 # Add an item to the cart
+from django.http import JsonResponse
+
 @login_required
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)  # Link cart to user
+    cart_item, created = CartItem.objects.get_or_create(user=request.user, product=product)
+
     if not created:
         cart_item.quantity += 1  # Increment quantity if item already exists
     cart_item.save()
-    return redirect('view_cart')
+
+    # Get total quantity of all items in the cart (not just unique items)
+    total_cart_quantity = sum(item.quantity for item in CartItem.objects.filter(user=request.user))
+
+    return JsonResponse({
+        "success": True,
+        "cart_count": total_cart_quantity  # Now reflects total quantity
+    })
 
 # Remove an item from the cart
 def remove_from_cart(request, cart_item_id):

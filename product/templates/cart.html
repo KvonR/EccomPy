@@ -4,47 +4,108 @@
 
 {% block content %}
 <div class="container">
-    <h2 class="mb-4 text-center">Your Shopping Cart</h2>
+    <h1 class="mb-4 text-center">Your Cart</h1>
 
     {% if cart_items %}
-    <table class="table table-striped table-hover">
-        <thead class="table-dark">
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart_items %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>${{ item.product.price }}</td>
-                <td>${{ item.product.price|floatformat:2 }}</td>
-                <td>
-                    <form action="{% url 'remove_from_cart' item.id %}" method="POST" class="d-inline">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <ul class="list-group mb-4">
+        {% for item in cart_items %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ item.product.name }}</strong> - ${{ item.product.price }} each
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="hidden" class="cart-item-id" value="{{ item.id }}">
+
+                <!-- Decrease Button -->
+                <button class="btn btn-outline-secondary btn-sm update-quantity" data-action="decrease">−</button>
+
+                <!-- Quantity Display (Read-Only) -->
+                <input type="text" class="cart-quantity form-control text-center mx-2"
+                       value="{{ item.quantity }}" readonly style="width: 50px;">
+
+                <!-- Increase Button -->
+                <button class="btn btn-outline-secondary btn-sm update-quantity" data-action="increase">+</button>
+
+                <!-- Item Total Price -->
+                <span class="item-total-price ms-3" data-unit-price="{{ item.product.price }}">${{ item.item_total }}</span>
+
+                <!-- Remove Button -->
+                <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger btn-sm ms-2">Remove</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 
     <div class="text-end">
-        <h4 class="mt-3">Total: <strong>${{ total_amount|floatformat:2 }}</strong></h4>
-        <a href="{% url 'checkout' %}" class="btn btn-success mt-2">Proceed to Checkout</a>
+        <h4><strong>Total:</strong> $<span id="total-price">{{ total_amount|floatformat:2 }}</span></h4>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="{% url 'product_list' %}" class="btn btn-secondary">Continue Shopping</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success">Proceed to Checkout</a>
     </div>
 
     {% else %}
-    <div class="text-center">
-        <p>Your cart is empty.</p>
-        <a href="{% url 'product_list' %}" class="btn btn-primary">Continue Shopping</a>
-    </div>
+    <p class="text-center">Your cart is empty.</p>
+    <a href="{% url 'product_list' %}" class="btn btn-primary">Continue Shopping</a>
     {% endif %}
 </div>
+
+<!-- JavaScript for + and - Buttons -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("✅ JavaScript Loaded!");
+
+    document.querySelectorAll(".update-quantity").forEach(button => {
+        button.addEventListener("click", function () {
+            let cartItemElement = this.closest("li");
+            let cartItemId = cartItemElement.querySelector(".cart-item-id").value;
+            let quantityInput = cartItemElement.querySelector(".cart-quantity");
+            let itemTotalElement = cartItemElement.querySelector(".item-total-price");
+
+            let currentQuantity = parseInt(quantityInput.value);
+            let action = this.dataset.action;
+
+            console.log(`📤 Button Clicked: ${action} for Cart Item ID ${cartItemId}`);
+
+            if (action === "increase") {
+                currentQuantity++;
+            } else if (action === "decrease" && currentQuantity > 1) {
+                currentQuantity--;
+            }
+
+            quantityInput.value = currentQuantity; // Update UI immediately
+
+            fetch("{% url 'update_cart' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: `cart_item_id=${cartItemId}&quantity=${currentQuantity}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("✅ Server Response:", data); // Debugging log
+
+                // ✅ Ensure total_amount is a valid number before using .toFixed(2)
+                if (typeof data.total_amount === "number") {
+                    document.getElementById("total-price").innerText = `${data.total_amount.toFixed(2)}`;
+                } else {
+                    console.error("❌ total_amount is not a number:", data.total_amount);
+                }
+
+                // ✅ Ensure item_total_price is also a valid number
+                if (typeof data.item_total_price === "number") {
+                    itemTotalElement.innerText = `${(currentQuantity * parseFloat(itemTotalElement.dataset.unitPrice)).toFixed(2)}`;
+                } else {
+                    console.error("❌ item_total_price is not a number:", data.item_total_price);
+                }
+            })
+            .catch(error => console.error("❌ Fetch Error:", error));
+        });
+    });
+});
+</script>
+
 {% endblock %}
